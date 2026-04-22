@@ -1,6 +1,12 @@
 # Build stage
 FROM node:20-alpine AS builder
 WORKDIR /app
+
+# Declare the build arg — passed from docker-compose build.args
+ARG NEXT_PUBLIC_API_URL
+# Make it available as an env var during `npm run build`
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps
 COPY . .
