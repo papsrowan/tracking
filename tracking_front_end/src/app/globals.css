@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #003366;
+  --color-primary-dark: #002244;
+  --color-accent: #FF6B00;
+  --color-accent-hover: #E65A00;
+  --color-dark: #1A1A1A;
+  --color-light: #F4F7F6;
+  
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-outfit);
+}
+
+@layer base {
+  body {
+    @apply bg-light text-dark font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+}
