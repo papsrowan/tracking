@@ -120,7 +120,7 @@ export default function AboutPage() {
                   className="rounded-2xl object-cover h-56 w-full shadow-lg"
                 />
                 <img
-                  src="https://images.unsplash.com/photo-1586528116311-ad8ed7c663be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src="https://images.unsplash.com/photo-1524522173746-f628baad3644?q=80&w=800&auto=format&fit=crop"
                   alt="Shipping containers"
                   className="rounded-2xl object-cover h-56 w-full shadow-lg mt-8"
                 />
@@ -130,7 +130,7 @@ export default function AboutPage() {
                   className="rounded-2xl object-cover h-56 w-full shadow-lg"
                 />
                 <img
-                  src="https://images.unsplash.com/photo-1612102956959-da75f1e23ec7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=800&auto=format&fit=crop"
                   alt="Cargo aircraft"
                   className="rounded-2xl object-cover h-56 w-full shadow-lg mt-8"
                 />

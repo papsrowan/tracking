@@ -13,7 +13,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -33,33 +35,70 @@ public class Parcel {
     @Column(unique = true)
     private String trackingNumber;
     
+    // ── Expéditeur ──────────────────────────────────────────────
     @NotBlank
     private String senderName;
     
     @NotBlank
     private String senderAddress;
     
-    @NotBlank
     private String senderPhone;
     
+    private String senderEmail;
+    
+    // ── Destinataire ─────────────────────────────────────────────
     @NotBlank
     private String receiverName;
     
     @NotBlank
     private String receiverAddress;
     
-    @NotBlank
     private String receiverPhone;
     
+    private String receiverEmail;
+    
+    // ── Itinéraire ───────────────────────────────────────────────
     @NotBlank
     private String originCountry;
     
     @NotBlank
     private String destinationCountry;
     
+    // ── Informations d'expédition ────────────────────────────────
+    private String carrier;
+    
+    private String typeOfShipment;
+    
+    private String shipmentMode;
+    
+    private String carrierRefNo;
+    
+    private String paymentMode;
+    
+    private String product;
+    
+    private String comments;
+    
+    private Integer packageQty;
+    
+    private BigDecimal totalFreight;
+    
+    private LocalDate pickupDate;
+    
+    private LocalTime pickupTime;
+    
+    private LocalTime departureTime;
+    
+    // ── Dimensions & Poids ───────────────────────────────────────
     @NotNull
     @Positive
     private BigDecimal weight;
+    
+    private BigDecimal length;
+    
+    private BigDecimal width;
+    
+    private BigDecimal height;
     
     @Enumerated(EnumType.STRING)
     private PackageType packageType;
@@ -70,6 +109,7 @@ public class Parcel {
     @Enumerated(EnumType.STRING)
     private ParcelStatus status = ParcelStatus.PROCESSING;
     
+    // ── Coûts ────────────────────────────────────────────────────
     private BigDecimal shippingCost;
     
     private BigDecimal customsFee;
@@ -82,10 +122,17 @@ public class Parcel {
     
     private BigDecimal totalCost;
     
+    // ── Dates de livraison ───────────────────────────────────────
     private LocalDateTime estimatedDeliveryDate;
     
     private LocalDateTime actualDeliveryDate;
     
+    // ── Coordonnées GPS (pour la carte) ──────────────────────────
+    private Double latitude;
+    
+    private Double longitude;
+    
+    // ── Historique ───────────────────────────────────────────────
     @OneToMany(mappedBy = "parcel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ShipmentHistory> shipmentHistory;
     
@@ -96,6 +143,7 @@ public class Parcel {
     @LastModifiedDate
     private LocalDateTime updatedAt;
     
+    // ── Enums ─────────────────────────────────────────────────────
     public enum PackageType {
         DOCUMENT, STANDARD, FRAGILE, EXPRESS
     }
@@ -105,6 +153,6 @@ public class Parcel {
     }
     
     public enum ParcelStatus {
-        PROCESSING, IN_TRANSIT, CUSTOMS_CLEARANCE, OUT_FOR_DELIVERY, DELIVERED, CANCELLED
+        PROCESSING, PENDING, IN_TRANSIT, CUSTOMS_CLEARANCE, OUT_FOR_DELIVERY, DELIVERED, CANCELLED
     }
 }

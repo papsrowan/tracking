@@ -7,4 +7,6 @@ public class StatusUpdateRequest {
     private String status;
     private String location;
     private String description;
+    private Double latitude;
+    private Double longitude;
 }

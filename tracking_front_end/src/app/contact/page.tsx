@@ -10,17 +10,17 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Our Office',
-    lines: ['Place de la Bourse 1', '1000 Brussels, Belgium'],
+    lines: ['Fell View, West Burton', 'Leyburn, DL8 4JY, Angleterre'],
   },
   {
     icon: Phone,
     title: 'Call Us',
-    lines: ['+32 2 123 45 67', '+32 2 987 65 43'],
+    lines: ['+44 7898 771042'],
   },
   {
     icon: Mail,
     title: 'Email Us',
-    lines: ['info@maxitransit.com', 'support@maxitransit.com'],
+    lines: ['maxitransitxy@gmail.com'],
   },
   {
     icon: Clock,
@@ -53,7 +53,7 @@ export default function ContactPage() {
             <h2 className="text-accent font-bold tracking-widest uppercase mb-4 text-sm">Get in Touch</h2>
             <h1 className="text-5xl sm:text-6xl font-heading font-extrabold text-white mb-6">Contact Us</h1>
             <p className="text-xl text-gray-300 max-w-xl mx-auto font-light">
-              Our team in Brussels is ready to help you with all your logistics needs.
+              Our team is ready to help you with all your logistics needs.
             </p>
           </motion.div>
         </div>
@@ -103,8 +103,8 @@ export default function ContactPage() {
                 className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 h-[480px]"
               >
                 <iframe
-                  title="maxiTransit Brussels Office"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.0!2d4.3517!3d50.8503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c38289bbf991%3A0x4b1e5e7e5e5e5e5e!2sPlace%20de%20la%20Bourse%2C%201000%20Bruxelles%2C%20Belgique!5e0!3m2!1sfr!2sbe!4v1714000000000!5m2!1sfr!2sbe"
+                  title="maxiTransit Office"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2319.4!2d-1.9793!3d54.2841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487c0!2sWest%20Burton%2C%20Leyburn%20DL8%204JY%2C%20Royaume-Uni!5e0!3m2!1sfr!2suk!4v1714000000000!5m2!1sfr!2suk"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

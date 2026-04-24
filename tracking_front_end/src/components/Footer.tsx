@@ -21,23 +21,23 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-gray-400 mb-8 leading-relaxed max-w-sm">
-              From booking to communications, to payment: Hyper Atlantic Courier helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business.
+              From booking to communications, to payment: maxiTransit helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business.
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-4 text-gray-300">
                 <Phone className="w-5 h-5 text-accent mt-1" />
                 <div>
-                  <span className="block font-bold">+1 (540) 324-3587</span>
+                  <span className="block font-bold">+44 7898 771042</span>
                   <span className="text-sm text-gray-500">Mon-Fri 9am-6pm</span>
                 </div>
               </div>
               <div className="flex items-center gap-4 text-gray-300">
                 <Mail className="w-5 h-5 text-accent" />
-                <span className="font-medium hover:text-accent cursor-pointer transition-colors">info@hyperatlanticcourier.com</span>
+                <span className="font-medium hover:text-accent cursor-pointer transition-colors">maxitransitxy@gmail.com</span>
               </div>
               <div className="flex items-start gap-4 text-gray-300">
                 <MapPin className="w-5 h-5 text-accent mt-1" />
-                <span className="leading-snug max-w-[200px]">645 Park Ave, San Jose, CA 95110, United States</span>
+                <span className="leading-snug max-w-[200px]">Fell View, West Burton, Leyburn, DL8 4JY, Angleterre</span>
               </div>
             </div>
           </div>

@@ -58,7 +58,9 @@ public class ParcelService {
     }
     
     @Transactional
-    public ParcelDTO updateParcelStatus(Long parcelId, Parcel.ParcelStatus newStatus, String location, String description) {
+    public ParcelDTO updateParcelStatus(Long parcelId, Parcel.ParcelStatus newStatus,
+                                        String location, String description,
+                                        Double latitude, Double longitude) {
         Parcel parcel = parcelRepository.findById(parcelId)
             .orElseThrow(() -> new RuntimeException("Parcel not found with id: " + parcelId));
         
@@ -66,11 +68,20 @@ public class ParcelService {
         if (newStatus == Parcel.ParcelStatus.DELIVERED) {
             parcel.setActualDeliveryDate(LocalDateTime.now());
         }
+        
+        // Update GPS coordinates if provided
+        if (latitude != null) {
+            parcel.setLatitude(latitude);
+        }
+        if (longitude != null) {
+            parcel.setLongitude(longitude);
+        }
+        
         parcel.setUpdatedAt(LocalDateTime.now());
         
         Parcel updatedParcel = parcelRepository.save(parcel);
         
-        // Add shipment history entry with fallback for optional fields
+        // Add shipment history entry
         String historyLocation = (location != null && !location.trim().isEmpty()) ? location : "Mise à jour système";
         String historyDescription = (description != null && !description.trim().isEmpty()) ? description : "Statut mis à jour: " + newStatus.name();
         
@@ -104,26 +115,55 @@ public class ParcelService {
         return ParcelDTO.builder()
             .id(parcel.getId())
             .trackingNumber(parcel.getTrackingNumber())
+            // Expéditeur
             .senderName(parcel.getSenderName())
             .senderAddress(parcel.getSenderAddress())
             .senderPhone(parcel.getSenderPhone())
+            .senderEmail(parcel.getSenderEmail())
+            // Destinataire
             .receiverName(parcel.getReceiverName())
             .receiverAddress(parcel.getReceiverAddress())
             .receiverPhone(parcel.getReceiverPhone())
+            .receiverEmail(parcel.getReceiverEmail())
+            // Itinéraire
             .originCountry(parcel.getOriginCountry())
             .destinationCountry(parcel.getDestinationCountry())
+            // Infos expédition
+            .carrier(parcel.getCarrier())
+            .typeOfShipment(parcel.getTypeOfShipment())
+            .shipmentMode(parcel.getShipmentMode())
+            .carrierRefNo(parcel.getCarrierRefNo())
+            .paymentMode(parcel.getPaymentMode())
+            .product(parcel.getProduct())
+            .comments(parcel.getComments())
+            .packageQty(parcel.getPackageQty())
+            .totalFreight(parcel.getTotalFreight())
+            .pickupDate(parcel.getPickupDate())
+            .pickupTime(parcel.getPickupTime())
+            .departureTime(parcel.getDepartureTime())
+            // Dimensions & Poids
             .weight(parcel.getWeight())
+            .length(parcel.getLength())
+            .width(parcel.getWidth())
+            .height(parcel.getHeight())
             .packageType(parcel.getPackageType())
             .shippingMethod(parcel.getShippingMethod())
+            // Statut
             .status(parcel.getStatus())
+            // Coûts
             .shippingCost(parcel.getShippingCost())
             .customsFee(parcel.getCustomsFee())
             .insuranceFee(parcel.getInsuranceFee())
             .handlingFee(parcel.getHandlingFee())
             .tax(parcel.getTax())
             .totalCost(parcel.getTotalCost())
+            // Dates
             .estimatedDeliveryDate(parcel.getEstimatedDeliveryDate())
             .actualDeliveryDate(parcel.getActualDeliveryDate())
+            // GPS
+            .latitude(parcel.getLatitude())
+            .longitude(parcel.getLongitude())
+            // Historique
             .shipmentHistory(historyDTOs)
             .createdAt(parcel.getCreatedAt())
             .build();
@@ -131,17 +171,40 @@ public class ParcelService {
     
     private Parcel convertToEntity(ParcelDTO dto) {
         return Parcel.builder()
+            // Expéditeur
             .senderName(dto.getSenderName())
             .senderAddress(dto.getSenderAddress())
             .senderPhone(dto.getSenderPhone())
+            .senderEmail(dto.getSenderEmail())
+            // Destinataire
             .receiverName(dto.getReceiverName())
             .receiverAddress(dto.getReceiverAddress())
             .receiverPhone(dto.getReceiverPhone())
+            .receiverEmail(dto.getReceiverEmail())
+            // Itinéraire
             .originCountry(dto.getOriginCountry())
             .destinationCountry(dto.getDestinationCountry())
+            // Infos expédition
+            .carrier(dto.getCarrier())
+            .typeOfShipment(dto.getTypeOfShipment())
+            .shipmentMode(dto.getShipmentMode())
+            .carrierRefNo(dto.getCarrierRefNo())
+            .paymentMode(dto.getPaymentMode())
+            .product(dto.getProduct())
+            .comments(dto.getComments())
+            .packageQty(dto.getPackageQty())
+            .totalFreight(dto.getTotalFreight())
+            .pickupDate(dto.getPickupDate())
+            .pickupTime(dto.getPickupTime())
+            .departureTime(dto.getDepartureTime())
+            // Dimensions & Poids
             .weight(dto.getWeight())
+            .length(dto.getLength())
+            .width(dto.getWidth())
+            .height(dto.getHeight())
             .packageType(dto.getPackageType())
             .shippingMethod(dto.getShippingMethod())
+            // Coûts
             .shippingCost(dto.getShippingCost())
             .customsFee(dto.getCustomsFee())
             .insuranceFee(dto.getInsuranceFee())
@@ -149,6 +212,9 @@ public class ParcelService {
             .tax(dto.getTax())
             .totalCost(dto.getTotalCost())
             .estimatedDeliveryDate(dto.getEstimatedDeliveryDate())
+            // GPS
+            .latitude(dto.getLatitude())
+            .longitude(dto.getLongitude())
             .build();
     }
 }

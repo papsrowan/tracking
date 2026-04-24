@@ -76,11 +76,13 @@ export const adminApiService = {
     return response.data;
   },
 
-  updateParcelStatus: async (parcelId: string, status: string, location?: string, description?: string): Promise<Parcel> => {
+  updateParcelStatus: async (parcelId: string, status: string, location?: string, description?: string, latitude?: number | null, longitude?: number | null): Promise<Parcel> => {
     const response = await adminApi.put(`/admin/parcels/${parcelId}/status`, {
       status,
       location,
       description,
+      latitude,
+      longitude,
     });
     return response.data;
   },

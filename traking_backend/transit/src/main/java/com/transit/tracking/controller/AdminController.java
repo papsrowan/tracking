@@ -40,7 +40,9 @@ public class AdminController {
         Parcel.ParcelStatus newStatus = Parcel.ParcelStatus.valueOf(request.getStatus());
         String location = request.getLocation();
         String description = request.getDescription();
-        return ResponseEntity.ok(parcelService.updateParcelStatus(id, newStatus, location, description));
+        Double latitude = request.getLatitude();
+        Double longitude = request.getLongitude();
+        return ResponseEntity.ok(parcelService.updateParcelStatus(id, newStatus, location, description, latitude, longitude));
     }
     
     @GetMapping("/parcels")

@@ -31,6 +31,8 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [newStatus, setNewStatus] = useState('');
   const [statusLocation, setStatusLocation] = useState('');
   const [statusDescription, setStatusDescription] = useState('');
+  const [statusLatitude, setStatusLatitude] = useState('');
+  const [statusLongitude, setStatusLongitude] = useState('');
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   useEffect(() => {
@@ -61,9 +63,11 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         senderName: formData.senderName,
         senderAddress: formData.senderAddress,
         senderPhone: formData.senderPhone || '',
+        senderEmail: formData.senderEmail || '',
         receiverName: formData.receiverName,
         receiverAddress: formData.receiverAddress,
         receiverPhone: formData.receiverPhone || '',
+        receiverEmail: formData.receiverEmail || '',
         weight: parseFloat(formData.weight),
         length: formData.length ? parseFloat(formData.length) : 0,
         width: formData.width ? parseFloat(formData.width) : 0,
@@ -72,6 +76,20 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         shippingMethod: formData.shippingMethod,
         originCountry: formData.originCountry,
         destinationCountry: formData.destinationCountry,
+        carrier: formData.carrier || '',
+        typeOfShipment: formData.typeOfShipment || '',
+        shipmentMode: formData.shipmentMode || '',
+        carrierRefNo: formData.carrierRefNo || '',
+        paymentMode: formData.paymentMode || '',
+        product: formData.product || '',
+        comments: formData.comments || '',
+        packageQty: formData.packageQty ? parseInt(formData.packageQty, 10) : 1,
+        totalFreight: formData.totalFreight ? parseFloat(formData.totalFreight) : 0,
+        pickupDate: formData.pickupDate || null,
+        pickupTime: formData.pickupTime || null,
+        departureTime: formData.departureTime || null,
+        latitude: formData.latitude ? parseFloat(formData.latitude) : null,
+        longitude: formData.longitude ? parseFloat(formData.longitude) : null,
         description: formData.description || '',
       };
 
@@ -92,6 +110,8 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     setNewStatus(parcel.status);
     setStatusLocation('');
     setStatusDescription('');
+    setStatusLatitude(parcel.latitude?.toString() || '');
+    setStatusLongitude(parcel.longitude?.toString() || '');
     setIsUpdateModalOpen(true);
   };
 
@@ -104,7 +124,9 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         selectedParcel.id!.toString(),
         newStatus,
         statusLocation,
-        statusDescription
+        statusDescription,
+        statusLatitude ? parseFloat(statusLatitude) : null,
+        statusLongitude ? parseFloat(statusLongitude) : null
       );
       setMessage({ type: 'success', text: 'Statut mis à jour avec succès!' });
       setIsUpdateModalOpen(false);
@@ -325,6 +347,35 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   placeholder="Ex: Colis en cours de livraison"
                   rows={3}
                 />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Latitude
+                  </label>
+                  <input
+                    type="number"
+                    step="any"
+                    value={statusLatitude}
+                    onChange={(e) => setStatusLatitude(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+                    placeholder="Ex: 48.8566"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Longitude
+                  </label>
+                  <input
+                    type="number"
+                    step="any"
+                    value={statusLongitude}
+                    onChange={(e) => setStatusLongitude(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+                    placeholder="Ex: 2.3522"
+                  />
+                </div>
               </div>
             </div>
 

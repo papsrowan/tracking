@@ -34,16 +34,16 @@ export function Header() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2 hover:text-accent cursor-pointer transition-colors">
               <Phone className="w-3 h-3 text-accent" />
-              +1 (540) 324-3587
+              +44 7898 771042
             </span>
             <span className="hidden sm:flex items-center gap-2 hover:text-accent cursor-pointer transition-colors">
               <Mail className="w-3 h-3 text-accent" />
-              info@hyperatlanticcourier.com
+              maxitransitxy@gmail.com
             </span>
           </div>
           <div className="hidden md:flex items-center gap-2 hover:text-accent cursor-pointer transition-colors">
             <MapPin className="w-3 h-3 text-accent" />
-            645 Park Ave, San Jose, CA 95110
+            Fell View, West Burton, Leyburn, DL8 4JY, Angleterre
           </div>
         </div>
       </div>
